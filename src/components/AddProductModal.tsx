@@ -216,19 +216,19 @@ export function AddProductModal({
                     ),
                   },
                   {
-                    value: "YouTube",
+                    value: "Youtube",
                     label: (
                       <span>
                         <img
-                          src="/companies/YouTube.png"
-                          alt="YouTube"
+                          src="/companies/Youtube.png"
+                          alt="Youtube"
                           style={{
                             width: "1rem",
                             height: "1rem",
                             marginRight: "0.5rem",
                           }}
                         />
-                        YouTube
+                        Youtube
                       </span>
                     ),
                   },
