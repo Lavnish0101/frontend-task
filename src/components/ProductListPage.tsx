@@ -24,15 +24,6 @@ export interface Product {
 
 const initialProducts: Product[] = [
   {
-    id: 1,
-    name: "Watch",
-    category: "Accessories",
-    price: 20,
-    company: "Google",
-    status: "In Stock",
-    image: "⌚",
-  },
-  {
     id: 2,
     name: "Mobile",
     category: "Telecommunication",
@@ -40,6 +31,15 @@ const initialProducts: Product[] = [
     company: "Webflow",
     status: "Out of Stock",
     image: "📱",
+  },
+  {
+    id: 3,
+    name: "Laptop",
+    category: "Note Book",
+    price: 800,
+    company: "Facebook",
+    status: "Out of Stock",
+    image: "💻",
   },
   {
     id: 3,
@@ -64,18 +64,9 @@ const initialProducts: Product[] = [
     name: "Camera",
     category: "Digital",
     price: 100,
-    company: "YouTube",
+    company: "Youtube",
     status: "Out of Stock",
     image: "📷",
-  },
-  {
-    id: 6,
-    name: "Perfume",
-    category: "Cosmetics",
-    price: 25,
-    company: "Reddit",
-    status: "In Stock",
-    image: "🧴",
   },
   {
     id: 7,
@@ -85,6 +76,15 @@ const initialProducts: Product[] = [
     company: "Spotify",
     status: "Out of Stock",
     image: "🎧",
+  },
+  {
+    id: 9,
+    name: "Torch",
+    category: "Light",
+    price: 20,
+    company: "Twitch",
+    status: "Out of Stock",
+    image: "🔦",
   },
   {
     id: 8,
