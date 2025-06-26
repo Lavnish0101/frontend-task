@@ -10,20 +10,65 @@ interface SidebarProps {
 }
 
 interface NavItemProps {
-  icon: React.ReactNode
-  label: string
-  isActive: boolean
-  onClick: () => void
-  isCollapsed: boolean
+  icon: React.ReactNode;
+  label: string;
+  isActive: boolean;
+  onClick: () => void;
+  isCollapsed: boolean;
+  defaultIcon?: string;
+  hoverIcon?: string;
 }
 
-function NavItem({ icon, label, isActive, onClick, isCollapsed }: NavItemProps) {
+function NavItem({
+  icon,
+  label,
+  isActive,
+  onClick,
+  isCollapsed,
+  defaultIcon,
+  hoverIcon,
+}: NavItemProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const getIcon = () => {
+    if (isActive) {
+      return icon;
+    }
+    if (isHovered && hoverIcon) {
+      return (
+        <img
+          src={hoverIcon}
+          alt={label}
+          style={{ width: "1.25rem", height: "1.25rem" }}
+        />
+      );
+    }
+    if (defaultIcon) {
+      return (
+        <img
+          src={defaultIcon}
+          alt={label}
+          style={{ width: "1.25rem", height: "1.25rem" }}
+        />
+      );
+    }
+    return icon;
+  };
+
   return (
-    <div className={`nav-item ${isActive ? "active" : ""}`} onClick={onClick} title={isCollapsed ? label : undefined}>
-      <div className={isActive ? "nav-item-icon active" : "nav-item-icon"}>{icon}</div>
+    <div
+      className={`nav-item ${isActive ? "active" : ""}`}
+      onClick={onClick}
+      title={isCollapsed ? label : undefined}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className={isActive ? "nav-item-icon active" : "nav-item-icon"}>
+        {getIcon()}
+      </div>
       {!isCollapsed && <span>{label}</span>}
     </div>
-  )
+  );
 }
 
 export function Sidebar({ activeSection, onNavigate, userName, userAvatar }: SidebarProps) {
@@ -58,11 +103,19 @@ export function Sidebar({ activeSection, onNavigate, userName, userAvatar }: Sid
       <nav className="sidebar-nav">
         <div className="sidebar-nav-list">
           <NavItem
-            icon={<img src="/Rectangle 5913.png" alt="home" style={{ width: "1.25rem", height: "1.25rem" }} />}
+            icon={
+              <img
+                src="/Rectangle 5913.png"
+                alt="home"
+                style={{ width: "1.25rem", height: "1.25rem" }}
+              />
+            }
             label="Dashboard"
             isActive={activeSection === "dashboard"}
             onClick={() => onNavigate("dashboard")}
             isCollapsed={isCollapsed}
+            defaultIcon="/default.png"
+            hoverIcon="/hover.png"
           />
           <NavItem
             icon={<Star style={{ width: "1.25rem", height: "1.25rem" }} />}

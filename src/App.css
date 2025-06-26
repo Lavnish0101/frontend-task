@@ -575,7 +575,6 @@ body.modal-open {
 }
 
 .small-chart-bar {
-  background: linear-gradient(to top, #CB3CFF, #06b6d4);
   border-radius: 0.125rem;
   flex: 1;
 }
@@ -754,7 +753,7 @@ body.modal-open {
 .form-input {
   border: 1px solid #4b5563;
   color: #ffffff;
-  background-color: #0B1739;
+  background-color: #0A1330;
   padding: 0.75rem;
   border-radius: 0.375rem;
   font-size: 1rem;
@@ -773,7 +772,7 @@ body.modal-open {
 .form-textarea {
   border: 1px solid #4b5563;
   color: #ffffff;
-  background-color: #081028;
+  background-color: #0A1330;
   padding: 0.75rem;
   border-radius: 0.375rem;
   font-size: 1rem;

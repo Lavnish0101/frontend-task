@@ -26,12 +26,10 @@ export function ProfitChart() {
         </div>
       </div>
       <div className="small-chart-content" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", height: "6rem" }}>
-        {profitData.map((data, index) => (
-          <div key={index} style={{ display: "flex", alignItems: "flex-end", height: "100%", gap: "2px" }}>
-            <div className="small-chart-bar" style={{ height: `${data.purple}%`, backgroundColor: "#CB3CFF", width: "4px" }} />
-            <div className="small-chart-bar" style={{ height: `${data.blue}%`, backgroundColor: "#00C2FF", width: "4px" }} />
-          </div>
-        ))}
+        {profitData.flatMap((data, index) => [
+          <div key={`${index}-purple`} className="small-chart-bar" style={{ height: `${data.purple}%`, backgroundColor: "#00C2FF", width: "4px" }} />,
+          <div key={`${index}-blue`} className="small-chart-bar" style={{ height: `${data.blue}%`, backgroundColor: "#CB3CFF", width: "4px" }} />
+        ])}
       </div>
       <div className="small-chart-x-axis">
         <span>12 AM</span>
