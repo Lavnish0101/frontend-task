@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   Search,
   Plus,
@@ -130,24 +130,24 @@ export function ProductListPage() {
       product.company.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    let aValue: string | number = a[sortField];
-    let bValue: string | number = b[sortField];
+  const sortedProducts = useMemo(() => {
+    return [...filteredProducts].sort((a, b) => {
+      const aValue = a[sortField];
+      const bValue = b[sortField];
 
-    if (sortField === "price") {
-      aValue = a.price;
-      bValue = b.price;
-    } else {
-      aValue = String(aValue).toLowerCase();
-      bValue = String(bValue).toLowerCase();
-    }
+      if (typeof aValue === "string" && typeof bValue === "string") {
+        return sortDirection === "asc"
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
 
-    if (sortDirection === "asc") {
-      return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
-    } else {
-      return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
-    }
-  });
+      if (typeof aValue === "number" && typeof bValue === "number") {
+        return sortDirection === "asc" ? aValue - bValue : bValue - aValue;
+      }
+
+      return 0;
+    });
+  }, [filteredProducts, sortField, sortDirection]);
 
   const totalProducts = sortedProducts.length;
   const totalPages = Math.ceil(totalProducts / rowsPerPage);
@@ -190,12 +190,9 @@ export function ProductListPage() {
   };
 
   const handleSort = (field: SortField) => {
-    if (sortField === field) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
-    } else {
-      setSortField(field);
-      setSortDirection("asc");
-    }
+    const isAsc = sortField === field && sortDirection === "asc";
+    setSortDirection(isAsc ? "desc" : "asc");
+    setSortField(field);
   };
 
   const handleSelectProduct = (productId: number) => {
@@ -249,7 +246,7 @@ export function ProductListPage() {
         <div className="product-table-header">
           <h2 className="product-table-title">All Products</h2>
           <p className="product-table-count">
-            {displayStart} - {displayEnd} of {totalProducts}
+            <span className="product-table-count-range">{displayStart} - {displayEnd}</span> of {totalProducts}
           </p>
         </div>
 

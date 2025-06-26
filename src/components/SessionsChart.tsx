@@ -1,11 +1,11 @@
-import { TrendingUp, Activity } from "lucide-react"
+import { TrendingUp, Clock } from "lucide-react"
 
 export function SessionsChart() {
   return (
     <div className="small-chart">
       <div className="small-chart-header">
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <Activity style={{ width: "1.25rem", height: "1.25rem", color: "#94a3b8" }} />
+          <Clock style={{ width: "1.25rem", height: "1.25rem", color: "#94a3b8" }} />
           <div className="small-chart-title">Total sessions</div>
         </div>
         <div className="small-chart-value-section">

@@ -1,6 +1,7 @@
 import type React from "react"
 import { useState, useRef } from "react"
-import { User, Bell, Upload, Edit, Mail, Camera, Smartphone } from "lucide-react"
+import { User, Bell, Upload, Edit, Mail, Camera, Smartphone, Info } from "lucide-react"
+import { Tooltip } from "./Tooltip"
 
 interface SettingsPageProps {
   personalInfo: {
@@ -366,9 +367,11 @@ function NotificationRow({ title, selectedOption, onOptionChange }: Notification
     <div className="notification-row">
       <div className="notification-row-content">
         <span className="notification-row-title">{title}</span>
-        <div className="notification-row-tooltip">
-          <span className="notification-row-tooltip-text">?</span>
-        </div>
+        <Tooltip text="Lorem ipsum dolor sit amet consectetur adipiscing.">
+          <div className="notification-row-tooltip">
+            <Info style={{ width: "1rem", height: "1rem" }} />
+          </div>
+        </Tooltip>
       </div>
       <div className="notification-row-controls">
         <div className="notification-toggle">

@@ -69,41 +69,43 @@ export function AddProductModal({
                 <ImageIcon style={{ width: "1rem", height: "1rem" }} /> Product
                 photo
               </label>
-              <div className="photo-upload-dropzone">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    if (e.target.files?.[0]) {
-                      const reader = new FileReader();
-                      reader.onloadend = () => {
-                        handleInputChange("image", reader.result as string);
-                      };
-                      reader.readAsDataURL(e.target.files[0]);
-                    }
-                  }}
-                  className="file-input"
-                />
-                {newProduct.image ? (
-                  <img
-                    src={newProduct.image}
-                    alt="Product"
-                    className="photo-preview"
+              <div className="photo-upload-dropzone" style={{ backgroundColor: "#0B1739" }}>
+                <div style={{ border: "1px dashed #4b5563", borderRadius: "0.5rem", padding: "1rem" }}>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      if (e.target.files?.[0]) {
+                        const reader = new FileReader();
+                        reader.onloadend = () => {
+                          handleInputChange("image", reader.result as string);
+                        };
+                        reader.readAsDataURL(e.target.files[0]);
+                      }
+                    }}
+                    className="file-input"
                   />
-                ) : (
-                  <>
-                    <Upload className="photo-upload-icon" />
-                    <p className="photo-upload-text">
-                      <span className="photo-upload-text-highlight">
-                        Click to upload
-                      </span>{" "}
-                      or drag and drop
-                    </p>
-                    <p className="photo-upload-subtext">
-                      SVG, PNG, JPG or GIF (max. 800 x 400px)
-                    </p>
-                  </>
-                )}
+                  {newProduct.image ? (
+                    <img
+                      src={newProduct.image}
+                      alt="Product"
+                      className="photo-preview"
+                    />
+                  ) : (
+                    <>
+                      <Upload className="photo-upload-icon" />
+                      <p className="photo-upload-text">
+                        <span className="photo-upload-text-highlight">
+                          Click to upload
+                        </span>{" "}
+                        or drag and drop
+                      </p>
+                      <p className="photo-upload-subtext">
+                        SVG, PNG, JPG or GIF (max. 800 x 400px)
+                      </p>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
             <div className="form-field">
@@ -330,13 +332,17 @@ export function AddProductModal({
                   {
                     value: "In Stock",
                     label: (
-                      <span className="status-badge in-stock">In Stock</span>
+                      <span className="status-badge in-stock">
+                        <div className="product-table-status-dot in-stock"></div>
+                        In Stock
+                      </span>
                     ),
                   },
                   {
                     value: "Out of Stock",
                     label: (
                       <span className="status-badge out-of-stock">
+                        <div className="product-table-status-dot out-of-stock"></div>
                         Out of Stock
                       </span>
                     ),
@@ -346,10 +352,19 @@ export function AddProductModal({
                   value: newProduct.status,
                   label: (
                     <span
-                      className={`status-badge ${newProduct.status
-                        .toLowerCase()
-                        .replace(" ", "-")}`}
+                      className={`status-badge ${
+                        newProduct.status === "In Stock"
+                          ? "in-stock"
+                          : "out-of-stock"
+                      }`}
                     >
+                      <div
+                        className={`product-table-status-dot ${
+                          newProduct.status === "In Stock"
+                            ? "in-stock"
+                            : "out-of-stock"
+                        }`}
+                      ></div>
                       {newProduct.status}
                     </span>
                   ),
@@ -364,8 +379,8 @@ export function AddProductModal({
             </div>
           </div>
         </div>
-        <div className="modal-footer">
-          <button className="btn btn-primary" onClick={handleAdd}>
+        <div className="modal-footer" style={{ justifyContent: "stretch" }}>
+          <button className="btn btn-primary" onClick={handleAdd} style={{ width: "100%" }}>
             Save
           </button>
         </div>

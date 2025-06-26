@@ -68,7 +68,7 @@ export function EditProductModal({
                 <ImageIcon style={{ width: "1rem", height: "1rem" }} /> Product
                 photo
               </label>
-              <div className="product-photo">
+              <div className="product-photo" style={{ flexDirection: "column", alignItems: "flex-start" }}>
                 <div className="photo-preview">
                   {product.image.startsWith("data:image") ? (
                     <img src={product.image} alt="Product" />
@@ -329,13 +329,17 @@ export function EditProductModal({
                   {
                     value: "In Stock",
                     label: (
-                      <span className="status-badge in-stock">In Stock</span>
+                      <span className="status-badge in-stock">
+                        <div className="product-table-status-dot in-stock"></div>
+                        In Stock
+                      </span>
                     ),
                   },
                   {
                     value: "Out of Stock",
                     label: (
                       <span className="status-badge out-of-stock">
+                        <div className="product-table-status-dot out-of-stock"></div>
                         Out of Stock
                       </span>
                     ),
@@ -345,10 +349,19 @@ export function EditProductModal({
                   value: product.status,
                   label: (
                     <span
-                      className={`status-badge ${product.status
-                        .toLowerCase()
-                        .replace(" ", "-")}`}
+                      className={`status-badge ${
+                        product.status === "In Stock"
+                          ? "in-stock"
+                          : "out-of-stock"
+                      }`}
                     >
+                      <div
+                        className={`product-table-status-dot ${
+                          product.status === "In Stock"
+                            ? "in-stock"
+                            : "out-of-stock"
+                        }`}
+                      ></div>
                       {product.status}
                     </span>
                   ),
@@ -363,8 +376,8 @@ export function EditProductModal({
             </div>
           </div>
         </div>
-        <div className="modal-footer">
-          <button className="btn btn-primary" onClick={handleSave}>
+        <div className="modal-footer" style={{ justifyContent: "stretch" }}>
+          <button className="btn btn-primary" onClick={handleSave} style={{ width: "100%" }}>
             Save
           </button>
         </div>

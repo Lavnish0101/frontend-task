@@ -1,4 +1,4 @@
-import { TrendingUp, DollarSign } from "lucide-react"
+import { TrendingUp } from "lucide-react"
 
 export function ProfitChart() {
   const profitData = [
@@ -14,7 +14,7 @@ export function ProfitChart() {
     <div className="small-chart">
       <div className="small-chart-header">
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <DollarSign style={{ width: "1.25rem", height: "1.25rem", color: "#94a3b8" }} />
+          <TrendingUp style={{ width: "1.25rem", height: "1.25rem", color: "#94a3b8" }} />
           <div className="small-chart-title">Total profit</div>
         </div>
         <div className="small-chart-value-section">
@@ -24,13 +24,12 @@ export function ProfitChart() {
             +28.5%
           </span>
         </div>
-        <span className="small-chart-subtitle">Last 12 months</span>
       </div>
       <div className="small-chart-content" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", height: "6rem" }}>
         {profitData.map((data, index) => (
           <div key={index} style={{ display: "flex", alignItems: "flex-end", height: "100%", gap: "2px" }}>
-            <div className="small-chart-bar" style={{ height: `${data.purple}%`, backgroundColor: "#a855f7", width: "4px" }} />
-            <div className="small-chart-bar" style={{ height: `${data.blue}%`, backgroundColor: "#06b6d4", width: "4px" }} />
+            <div className="small-chart-bar" style={{ height: `${data.purple}%`, backgroundColor: "#CB3CFF", width: "4px" }} />
+            <div className="small-chart-bar" style={{ height: `${data.blue}%`, backgroundColor: "#00C2FF", width: "4px" }} />
           </div>
         ))}
       </div>
@@ -40,6 +39,7 @@ export function ProfitChart() {
         <span>4 PM</span>
         <span>11 PM</span>
       </div>
+      <span className="small-chart-subtitle" style={{ position: "absolute", bottom: "1.5rem", left: "1.5rem" }}>Last 12 months</span>
     </div>
   )
 }

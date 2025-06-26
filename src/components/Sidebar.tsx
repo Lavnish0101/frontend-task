@@ -1,6 +1,6 @@
 import type React from "react"
 import { useState } from "react"
-import { BarChart3, Home, List, Settings, User, ChevronLeft, ChevronRight } from "lucide-react"
+import { BarChart3, Home, List, Settings, User, ChevronLeft, ChevronRight, Star } from "lucide-react"
 
 interface SidebarProps {
   activeSection: string
@@ -34,7 +34,7 @@ export function Sidebar({ activeSection, onNavigate, userName, userAvatar }: Sid
   }
 
   return (
-    <div className={`sidebar ${isCollapsed ? "collapsed" : "expanded"}`}>
+    <div className={`sidebar ${isCollapsed ? "collapsed" : "expanded"}`} style={{ transition: "width 0.3s ease" }}>
       {/* Logo */}
       <div className="sidebar-header">
         <div className="sidebar-logo">
@@ -58,14 +58,14 @@ export function Sidebar({ activeSection, onNavigate, userName, userAvatar }: Sid
       <nav className="sidebar-nav">
         <div className="sidebar-nav-list">
           <NavItem
-            icon={<Home style={{ width: "1.25rem", height: "1.25rem" }} />}
+            icon={<img src="/Rectangle 5913.png" alt="home" style={{ width: "1.25rem", height: "1.25rem" }} />}
             label="Dashboard"
             isActive={activeSection === "dashboard"}
             onClick={() => onNavigate("dashboard")}
             isCollapsed={isCollapsed}
           />
           <NavItem
-            icon={<List style={{ width: "1.25rem", height: "1.25rem" }} />}
+            icon={<Star style={{ width: "1.25rem", height: "1.25rem" }} />}
             label="Product List"
             isActive={activeSection === "product-list"}
             onClick={() => onNavigate("product-list")}

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Eye, Users, UserPlus, CreditCard } from "lucide-react"
+import { Eye, User, PlusCircle, Star, TrendingUp, Clock } from "lucide-react"
 import { Sidebar } from "./components/Sidebar"
 import { StatCard } from "./components/StatCard"
 import { RevenueChart } from "./components/RevenueChart"
@@ -58,21 +58,21 @@ function App() {
                 value="23.6K"
                 change="-10.8%"
                 isPositive={false}
-                icon={<Users style={{ width: "1.25rem", height: "1.25rem" }} />}
+                icon={<User style={{ width: "1.25rem", height: "1.25rem" }} />}
               />
               <StatCard
                 title="New sign ups"
                 value="756"
                 change="+16.2%"
                 isPositive={true}
-                icon={<UserPlus style={{ width: "1.25rem", height: "1.25rem" }} />}
+                icon={<PlusCircle style={{ width: "1.25rem", height: "1.25rem" }} />}
               />
               <StatCard
                 title="Subscriptions"
                 value="2.3K"
                 change="+8.5%"
                 isPositive={true}
-                icon={<CreditCard style={{ width: "1.25rem", height: "1.25rem" }} />}
+                icon={<Star style={{ width: "1.25rem", height: "1.25rem" }} />}
               />
             </div>
 

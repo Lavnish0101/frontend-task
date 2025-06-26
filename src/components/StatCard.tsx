@@ -12,9 +12,9 @@ interface StatCardProps {
 export function StatCard({ title, value, change, isPositive, icon }: StatCardProps) {
   return (
     <div className="stat-card">
-      <div className="stat-card-header">
-        <span className="stat-card-title">{title}</span>
+      <div className="stat-card-header" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
         <div className="stat-card-icon">{icon}</div>
+        <span className="stat-card-title">{title}</span>
       </div>
       <div className="stat-card-content">
         <div className="stat-card-value">{value}</div>
